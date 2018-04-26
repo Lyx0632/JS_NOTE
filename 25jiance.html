@@ -1,0 +1,330 @@
+<!DOCTYPE html>
+<html leng="en">
+<head>
+<meta charset="UTF-8"/>
+<title>25日检测前三天知识点</title>
+</head>
+<body>
+	<h1>25日检测前3天的知识点</h1>
+	<p>1、写一段代码用以测试用户设置的密码是正确的6位数字密码</p>
+	（初步尝试未能写出来）参考答案如下：
+	考察点：password  密码关键词的写法
+		if(){}else{}分支流程控制语句的使用
+		判断条件的掌握  非数值的判断函数，即isNaN()的布尔返回值
+	思路：判断密码长度是否等于6+密码类型是否为数值
+	具体写法如下：
+	<script>
+		var password=prompt("请输入您的密码");
+		if(password.length!=6){
+			alert("请输入6位数字密码");
+		}else{
+			if(isNaN(password)==true){
+				alert("密码必须是数字");	
+			}else{
+				alert("密码正确");
+			}
+		}
+	</script>
+
+
+<br/>
+
+
+	<p>2、写一段代码判断用户输入的年龄必须18岁——56岁才可以上网</p>
+	考察点：if....else...流程控制语句的使用
+		题目判断条件的关键字
+	初步答题如下：
+	<script>
+		var age=prompt("请输入您的年龄");
+		if(age<18){
+			alert("抱歉，您未成年不能上网");
+		}else{
+			if(age>=18&&age<=56){
+				alert("您已成年请输入身份证号");
+			}else{
+				alert("抱歉，您已超过年龄限制");
+			}
+		}
+	</script>
+
+<br/>
+
+	<p>3、写一段代码判断字符串"abc123"在进行转换整数之后的返回值跟NaN、123、"number"、"string"的比较</p>
+	<script>
+		var str="abc123";
+		var num=parseInt(str);//NaN
+		if(num==NaN){
+			alert(NaN);//NaN不跟任何数相等，包括它本身
+		}else if(num==123){
+			alert(123);
+		}else if(typeof num==="number"){
+			alert("number");
+		}else{alert("string");}
+	</script>
+
+<br/>
+
+
+	<p>4、逻辑运算符的使用&&、||、！</p>
+	<script>
+		var m;
+		console.log("abc"&&123&&8);//打印为8————因为"abc"进行了隐式类型转换之后再进行比较，即var num=Number("abc")————且当第一个操作数为true时，返回值为第二个操作数，以此类推
+		console.log(0&&88&&"abc");//0————当第一个操作数为false时，直接打印第一个操作数
+		console.log(0||123||"abc");//123——当第一个操作数为假时，往下执行，第二个为真时，直接打印第二个，后续的不执行
+	</script>
+<pre style="color:red">除0 之外的所有数字，转换为布尔型都为true；
+		除“”之外的所有字符，转换为布尔型都为布尔型都为true
+		null和undefined转换为布尔型为false</pre>
+	<script>
+
+		console.log(""||null||0);//0————————当变成console.log(""||0||null);时打印出来为null>>>>这是为什么？>>>见上面红色字体
+
+		console.log(""||null||"abc");//abc
+
+		console.log( ""||m);//undefind——————当变成console.log(m||"");时打印出来是空字符>>>>这是为什么？>>>见上面红色字体
+
+		console.log(30*"abc"||55-"def");//此处即等于NaN||NaN,故为NaN
+		console.log(null&&3);//若有一个数为null，则返回操作数为null
+		console.log(33*"abc"&&55);//若一个操作数是NaN，则返回NaN
+		console.log(m);//若有一个操作数是undefined，则返回undefined
+	</script>
+
+<br/>
+	
+	<p>5、写一段代码获取网页所显示的日期</p>
+	考察点：对象的使用  new Date().getDay();
+	初步解答：
+	<script>
+		var week=new Date().getDay();
+		console.log(week);
+	</script>
+
+	<p>写一段代码用来检验网页上今天所对应的星期，比如0-星期一，以此类推</p>
+	<script>
+		var hrr=parseInt(prompt("请输入对应数字"));//采用转换函数的原因是prompt()弹出框输入的数值默认为字符串，所以需要转换之后才能对应下方的switch情况 ——————其实可以采用JS自己内置的Date对象就不用再自行转换了
+		switch(hrr){//当分支条件超过三个时采用switch语句
+			case 0:
+			document.write("今天是星期一");
+			break;
+			case 1:
+			document.write("今天是星期二");
+			break;
+			case 2:
+			document.write("今天是星期三");
+			break;
+			case 3:
+			document.write("今天是星期四");
+			break;
+			case 4:
+			document.write("今天是星期五");
+			break;
+			case 5:
+			document.write("今天是星期六");
+			break;
+			default :
+			document.write("今天是星期天")
+		}
+	</script>
+
+
+<br/>
+	
+	<pre>6、数值转换为字符串可采用强制转换Object.toString()  
+	而字符串转换为数值可采用转换函数parsetInt()、parsetFloat()、或者采用强制转换如Number()、</pre>
+	<script>
+	var ids=78965;
+	var idstr=ids.toString();//把ids值转换为字符串
+	var id="16";
+	var newid=parseInt(id);
+	var tt="marry";
+	var newtt=Number(tt);
+	var htt=parseInt(tt);
+	console.log(htt);// NaN  因为parseInt()函数将从字符串的——开头——读取一个数字，并返回一个数字版本，在此处读取的是m,不是有效数字，故函数返回特殊值NaN
+	console.log(newtt);//NaN
+	</script>
+<br/>
+
+	
+	<p>7、typeof函数的用法，typeof运算符把类型信息当做字符串返回</p><br/>
+	typeof返回值有6种可能：
+	"number"————这个值是数值
+	"string"————这个值是字符串
+	"boolean"————这个值是布尔值
+	"object"————这个值是对象或者null
+	"function"————这个值是函数
+	"undefined"————这个值未定义
+<br/>
+	eg：//Number
+	typeof(37)==="number";
+	typeof(3.15)==="number";
+	typeof(Infinity)==="number";
+	typeof NaN==="number";
+<br/>
+	//String
+	typeof ""==="string";
+	typeof "bla"==="string";
+	typeof(typeof 1)==="string";
+<br/>
+	//Boolean
+	typeof true==="boolean";
+	typeof false==="boolean";
+<br/>
+	//undefined
+	typeof undefined==="undefined";
+<br/>
+	//object
+	typeof {a:1}==="object";
+	typeof [1,2,3]==="object";
+	typeof new Date()==="object"
+	typeof null==="object";
+<br/>
+	//function
+	typeof function(){}==="function";
+	typeof class C{}==="function";
+
+<br/>
+
+	
+	<p>8、for、while、do...while循环语句的使用</p>
+	8.1写一段代码打印出1-100的数字，初始值为1，采用尽可能多的方式
+	初步解答：方法1、
+		for(var i=1;i<=100;i++){
+		document.write(i+'<br/>');
+	}
+<br/>
+	方法2: var i=1;
+			while(i<=100){
+			i++;
+			document.write(i+'<br/>');
+		}
+<br/>
+	方法3：var i=1;
+			do{
+			document.write(i+'<br/>');
+			i++;
+			}while(i<=100);
+
+<br/>
+
+	8.2写一段代码计算1+2+3+....+100=?
+	初步解答：
+	方法1：var i=1,sum=0;
+	for(i;i<=100;i++){
+	sum+=i;
+	} document.write(sum);
+	方法2：
+	var i=1,sum=0;
+	while(i<=100){
+		sum+=i;
+		i++;
+	} document.write(sum);
+
+<br/>
+
+	8.3写一段代码直接输出99、97、95...3、1
+	初步解答：var i=99,s;
+		for(i;i>=1;s=i-2){
+			document.write(s);
+		}
+
+<br/>
+
+	8.4写一段代码打印出0——50之间除20和30之外的5的倍数
+	初步解答：未能完成
+	参考答案：for(var x=0;x<=50;x+=5){
+					if(x==20||x==30){
+					continue;
+				}
+				console.log(x);
+			}
+<br/>
+
+	8.5写一段代码打印出方框1包裹着1-5的数字，方框2包括1-5的数字，方框3包括1-5的数字
+	初步解答：循环嵌套语句
+	for(var i=1;i<=3;i++){
+			document.write(i+<br/>);
+		for(var n=1;n<=5;n++){
+			document.write(n+<br/>);
+		}
+	}
+
+	for循环适合已知循环次数的循环体
+	while适合未知循环次数的循环体
+	break：立即退出循环，后面的脚本不执行
+	continue:仅仅退出当前循环语句，后面的判断语句继续执行，并执行后续打印动作
+<br/>
+
+	9、ECMAScript的参数在内部用一个数组来表示
+	在函数体内通过argument对象来访问这个数组：
+	说明：1、argument对象只是与数组类似，并不是Arry的实例
+	2、[]语法访问它的每一个元素
+	3、length属性确定传递参数的个数
+<br/>
+    9.1面试常考题：求任意一组数的平均值，采用函数数组进行解答
+    参考答案如下：
+    	<script>
+    		function getAvg(){
+    		var sun=0,lens=arguments.length,i;
+    		for(i=0;i<lens;i++){
+    			sum+=arguments[i];
+    			}
+    			return sum/lens;
+    	}
+    	var avg=getAvg(5,66,45,32,88);
+    	console.log(avg);
+    </script>
+
+    	<h3>JS的内置对象主要有：</h3>
+    	<ul>
+    		<li>Array</li>
+    		<li>String</li>
+    		<li>Math</li>
+    		<li>Date</li>
+    	</ul>
+    	<h3>10、创建数组的方式主要有两种：</h3>
+    	1、使用Array构造函数
+    	语法：new Array()
+    	小括号说明:(1)、预先知道数组要保存的项目数量(20向Array构造函数中传递数组应包含的项
+    	2、使用数组字面量表示法
+    	由一堆包含数组项的方括号[]表示，多个数组项之间以逗号隔开
+
+<br/>
+		<h3>数组长度</h3>
+		语法：array.length
+		功能：获取数组array的长度
+		返回值：number
+		说明：1、通过设置length的长度可以从数组的末尾移除项或向数组中添加新项；2、把一个值放在超出当前数组大小的位置上时，会重新计算数组长度值，长度值等于最后一项索引加1
+		eg：var arr=["a","b","c","d"];
+			arr[99]="z";//把一个值放在超出当前数组的长度时
+			console.log(arr.length);//这个arr数组长度会重新计算，变为100
+
+		数组的遍历：
+		for(var i=0;i<=arr.length;i++){
+			console.log(arr[i]);
+		}
+
+<br/>
+		<h3>数组的栈方法：</h3>
+		1、push()
+		语法：arrayObject.push(n1,n2,...nX);
+		功能：把参数顺序添加到arrayObject的开头
+		返回值:把指定的值添加到数组后的————新长度
+		eg: var color=["red","yellow","green","blue"];
+			var  len=color.push("black","pick");
+			console.log(len);//返回值为5
+
+		2、unshift()
+		则是把新值添加到当前数组的前面————新值+旧值
+		eg： var ctr=[3,4,5];
+			var trr=ctr.unshtif(6,7,8);
+			console.log(trr);//返回值为[6,7,8,3,4,5]
+
+		3、pop()
+		用来删除数组的最后一个元素，返回值为被删除的元素
+		eg：var num=[88,99,100];
+			var 
+
+
+
+</body>
+</html>
